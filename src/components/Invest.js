@@ -1,0 +1,48 @@
+
+import AboutTrestle from "./AboutTrestle"
+import Filter from "./Filter"
+import Footer from "./Footer"
+import Nav from "./Nav"
+import investData from "./investData"
+
+
+export default function Invest(){
+    return(
+        <div id="invest">
+            <Nav />
+            <div className=" w-11/12 lg:w-10/12 mx-auto text-[13px] sm:text-[15px] md:text-[17px] lg:text-[20px] xl:text-[24px] text-[#4A6DA7]">
+                <div className="flex mt-8 xl:mt-12 justify-between text-[14px] sm:text-[17px] md:text-[19px] lg:text-[21px] xl:text-[24px]">
+                    <h1 className="md:mb-16 ">Investment Opportunities</h1>
+                    <button className="funded-portfolio text-s px-1 sm:py-1 self-start border-[#4A6DA7] border">
+                        <a href="">Funded Portfolio</a>
+                    </button>
+                </div>
+                <div className="invest-filter mt-6"> <Filter /></div>
+                
+                <div className=" investment-options sm:grid grid-cols-2 lg:grid-cols-3 gap-x-6 mx-auto mt-4 pb-4 mb-4 md:mb-20">
+                    {investData.map((item, index) => {
+                        return(
+                            <div className="investment-option mt-8 md:mt-16 flex justify-center sm:flex-none sm:mx-0 text-[#4A6DA7]">
+                                <div className="flex flex-col">
+                                <img className=" sm:order-first" src={item.img} alt="image of investment option" />
+                                
+                                    <h4 className="order-first sm:text-start mb-3 sm:mb-0 sm:mt-3
+                                text-[16px] sm:text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px]">{item.title}</h4>
+                                <p className="max-w-[400px] mt-3 font-[Roboto]">
+                                {item.writeup}...<a className="block opacity-[0.8]">Read more</a>
+                                </p>
+                                <button className=" px-3 py-1 rounded mt-3 self-start">FUND NOW</button>
+                                </div>
+                                
+                            </div>
+                        )
+                        
+                    }
+                    )}
+                </div>
+            </div>
+            <AboutTrestle />
+            <Footer />
+            </div>
+    )
+}
