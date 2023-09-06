@@ -9,8 +9,8 @@ import Footer from "./Footer"
 import Nav from "./Nav"
 import AboutTrestle from './AboutTrestle'
 import { useState } from "react";
-import {GiCircle} from "react-icons/gi"
-
+import { GiCircle } from "react-icons/gi"
+import { useSwipeable } from 'react-swipeable';
 
   
 
@@ -18,11 +18,14 @@ export default function Home(){
     const [slidePosition, setSlidePosition] = useState(0)
     const slideLength = HomeCarouselData.length
 
-    let nextSlide = () => {
+    const nextSlide = () => {
         setSlidePosition(slidePosition === slideLength - 1 ? 0 : slidePosition + 1)
     }
 
-    // nextSlide()
+    const swipeHandlers = useSwipeable({
+        onSwipedRight: () => nextSlide()
+    })
+    
 
     
 
@@ -61,7 +64,7 @@ export default function Home(){
                     <div>
                         {HomeCarouselData.map((item, index) => {
                             return (
-                                <div className="business-mogul adeola flex flex-col lg:flex-row lg:space-x-8 pb-6 text-gray-600">
+                                <div className="business-mogul adeola flex flex-col lg:flex-row lg:space-x-8 pb-6 text-gray-600" onSwipedRight={swipeHandlers.onSwipedRight}>
                                     <div key={index}
                                     className={` ${slidePosition === index ? "block" : "hidden" }`}>
                                         <img className="w-3/4 mx-auto mt-8"
